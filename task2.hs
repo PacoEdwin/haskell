@@ -3,7 +3,8 @@ import Data.List
 import Data.Maybe
 import Text.Read
 import Data.Numbers.Primes
-----------------------------------------
+
+------------------------------------------------------------------------
 deleteN :: Int -> [a] -> [a]
 deleteN _ []     = []
 deleteN i (a:as)
@@ -15,7 +16,7 @@ removeVal val [] = []
 removeVal val (el: tail)
     | val == el = removeVal val tail
     | otherwise = el : removeVal val tail
-----------------------------------------
+------------------------------------------------------------------------
 
 -- 1
 antisort :: Ord a => [a] -> [a]

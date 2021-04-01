@@ -9,8 +9,6 @@ f2_1 :: Int -> Bool
 f2_1 x = isPrime x
 
 -- 3
--- boolToInt :: (Bool) -> Int
--- boolToInt bVal = if bVal == True  then 1 else 0 
 f3_1 ::  Bool -> Bool -> Int
 f3_1 bool1 bool2 = (fromEnum bool1 :: Int) + (fromEnum bool2 :: Int)
 
