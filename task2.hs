@@ -122,6 +122,7 @@ maybeMaybeMaybeMaybeMaybeMaybeMaybeOrNot m a = case m of
                     (Just f) -> case f of
                         Nothing -> a
                         (Just g) -> g
+
 --10
 stupidTraverse :: [Maybe a] -> Maybe [(a, a, a, a)]
 tuplify4 :: [Maybe a] -> (a,a,a,a)
