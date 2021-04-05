@@ -1,14 +1,16 @@
 module Task1 where
+
 import Data.Numbers.Primes
--- 1
+
+--1
 f1_1 :: Int -> Int
 f1_1 x = x
 
--- 2
+--2
 f2_1 :: Int -> Bool
 f2_1 x = isPrime x
 
--- 3
+--3
 f3_1 ::  Bool -> Bool -> Int
 f3_1 bool1 bool2 = (fromEnum bool1 :: Int) + (fromEnum bool2 :: Int)
 
@@ -37,3 +39,11 @@ f7_1 m n
     | m == 0 = n + 1
     | m > 0 && n == 0 = f7_1 (m-1) 1
     | m > 0 && n > 0 = f7_1 (m-1) (f7_1 m (n-1))
+
+--8
+f8_1 :: Int -> Int -> Integer
+f8_1 m n = toInteger $ f7_1 m n
+
+--12
+f12_1 :: Int
+f12_1 = 2

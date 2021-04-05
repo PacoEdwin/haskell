@@ -1,7 +1,9 @@
 module Task2 where
+
 import Data.List
 import Data.Maybe
 import Text.Read
+import Control.Monad (join)
 import Data.Numbers.Primes
 
 ------------------------------------------------------------------------
@@ -110,19 +112,7 @@ getNumberOrNot x = readMaybe ((preProcess x) x)
 
 --9
 maybeMaybeMaybeMaybeMaybeMaybeMaybeOrNot ::Maybe (Maybe (Maybe (Maybe (Maybe (Maybe a))))) -> a -> a
-maybeMaybeMaybeMaybeMaybeMaybeMaybeOrNot m a = case m of
-    Nothing -> a
-    (Just b) -> case b of
-        Nothing -> a
-        (Just c) -> case c of
-            Nothing -> a
-            (Just d) -> case d of
-                Nothing -> a
-                (Just e) -> case e of
-                    Nothing -> a
-                    (Just f) -> case f of
-                        Nothing -> a
-                        (Just g) -> g
+maybeMaybeMaybeMaybeMaybeMaybeMaybeOrNot m a = fromMaybe a (join (join (join (join (join m)))))
 
 --10
 stupidTraverse :: [Maybe a] -> Maybe [(a, a, a, a)]

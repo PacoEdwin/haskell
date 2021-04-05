@@ -1,4 +1,5 @@
 module Task3 where
+
 import Data.Maybe
 import Text.Read
 import Data.Numbers.Primes
@@ -78,6 +79,23 @@ add x (Node v l c r)
     | contains x l || contains x c = Node v l c r
     | otherwise = Node v (add x l) c r
 
+------------------------------------------------------------------------
+data N = Z | S N
+    deriving Show
+------------------------------------------------------------------------
+
+--8
+natSum :: N -> N -> N
+natSum Z x = x
+natSum x Z = x
+natSum x (S y) = S (natSum x y)
+
+--9
+natMult :: N -> N -> N
+natMult Z _ = Z
+natMult _ Z = Z
+natMult x (S y) = natSum x (natMult x y)
+
 -- 11
 instance Functor Tree where
     fmap f Nil = Nil
@@ -85,3 +103,16 @@ instance Functor Tree where
     fmap f (Node v l c r) = Node (f v) (fmap f l) (fmap f c) (fmap f r)
 
 testTree2Functor = fmap (+2) testTree2
+
+--12
+instance Eq N where
+    (==) Z Z = True
+    (==) (S _) Z = False
+    (==) Z (S _) = False
+    (==) (S x) (S y) = x == y
+
+instance Ord N where
+    compare Z Z = EQ
+    compare (S _) Z = GT
+    compare Z (S _) = LT
+    compare (S x) (S y) = compare x y     
