@@ -93,7 +93,7 @@ process [] = Just ""
 process (c: tail) 
     | c >= '0' && c <= '9' = Just (c : (fromJust (process tail)))
     | c == ' ' || c == '\n' = process tail
-    | otherwise = error "Parsing went wrong"
+    | otherwise = error "NANI???"
 
 failed x = Nothing
     

@@ -1,7 +1,5 @@
 module Task4 where
 
-import System.Random
-
 --1
 readInteger :: IO Integer
 readInteger = readLn
@@ -18,7 +16,7 @@ apb = do
 --2
 accumulate :: Integer -> IO Integer
 accumulate sum = do
-    a <- readInt 
+    a <- readInteger
     if a == 0 then return sum else accumulate (sum + a)
 
 whileNotZero :: IO()
@@ -32,3 +30,27 @@ fakeRandom = do
     seed <- readInt
     k <- readInt
     print (take k $ randoms (mkStdGen seed) :: [Float])
+
+------------------------------------------------------------------------
+data FS = File String String | Directory String [FS]
+    deriving Show
+------------------------------------------------------------------------
+
+--4,5
+getNames :: FS -> String
+getNames (File name _) = name
+getNames (Directory name children) = name ++ "\n" ++ concatMap (\x -> getNames x ++ "\n") children
+
+runFS :: FS -> IO ()
+runFS fs = do
+    comand <- getLine
+    case comand of
+        "exit" -> return ()
+        
+        "ls" -> do
+            putStrLn (getNames fs)
+            runFS fs
+        
+        unknown -> do
+            putStrLn ("command " ++ unknown ++ " doesn't exist")
+            runFS fs
