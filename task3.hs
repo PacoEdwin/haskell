@@ -96,7 +96,7 @@ natMult Z _ = Z
 natMult _ Z = Z
 natMult x (S y) = natSum x (natMult x y)
 
--- 11
+--11
 instance Functor Tree where
     fmap f Nil = Nil
     fmap f (Leaf x) = Leaf (f x)

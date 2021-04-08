@@ -24,13 +24,6 @@ whileNotZero = do
     a <- accumulate 0
     print a
 
---3
-fakeRandom :: IO()
-fakeRandom = do
-    seed <- readInt
-    k <- readInt
-    print (take k $ randoms (mkStdGen seed) :: [Float])
-
 ------------------------------------------------------------------------
 data FS = File String String | Directory String [FS]
     deriving Show

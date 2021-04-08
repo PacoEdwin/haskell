@@ -37,7 +37,22 @@ f4_1 x = aliquotSum x
 f5_1 :: Int -> Int
 f5_1 n = if f4_1 (n + 1) == n + 1 then n + 1
                         else f5_1 (n + 1)
-                        
+
+--6
+divisorSumL' :: Integer -> [(Integer, Integer)] -> Integer
+divisorSumL' res [] = res
+divisorSumL' res ((p, a): tail) = divisorSumL' ( res*(((p^(a+1)) - 1) `div` (p - 1)) ) tail
+
+divisorSumL x = divisorSumL' 1 x
+aliquotSumL x = divisorSumL (parsePrimesWrapper (abs x)) - (abs x)
+
+f4_1L :: Integer -> Integer
+f4_1L x = aliquotSumL x
+
+f6_1 :: Integer -> Integer
+f6_1 n = if f4_1L (n + 1) == n + 1 then n + 1
+                        else f6_1 (n + 1)
+
 --7
 f7_1 :: Int -> Int -> Int
 f7_1 m n
@@ -48,11 +63,6 @@ f7_1 m n
 --8
 f8_1 :: Int -> Int -> Integer
 f8_1 m n = toInteger $ f7_1 m n
-
---11
-f11_1 :: Int -> Double
-f11_1 k = if k <= 0 then 0
-                else 1 / f11_0 (k -1) ((2 * fromIntegral k - 1)**2 / 2)
 
 --12
 f12_1 :: Int
